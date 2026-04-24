@@ -35,6 +35,10 @@
     max-width: 800px;
     text-align: left; /* Or 'center' if you prefer a centered hero */
     pointer-events: none;
+    background: rgba(5, 5, 5, 0.4);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 /* Force the button to follow the text alignment */
@@ -111,22 +115,17 @@
     padding-left: 15px;
 }
 
-/* Update in css/layout.css */
-footer {
-    padding: 100px 10% 150px 10%; /* Extra bottom padding for the dock */
-    background: #ffffff;
-    border-top: 1px solid #e2e8f0;
-    text-align: center;
-}
 
-.footer-content {
-    max-width: 800px;
-    margin: 0 auto;
+footer {
+    padding: 100px 10% 150px 10%; 
+    background: #000; /* Match the hero background */
+    border-top: 1px solid rgba(0, 255, 65, 0.1); /* Subtle green border instead of grey */
+    text-align: center;
 }
 
 .footer-content p {
     font-size: 1.1rem;
-    color: var(--text);
-    opacity: 0.7;
+    color: var(--text-secondary); /* Use the soft gray we defined for legibility */
+    opacity: 0.8;
     margin-bottom: 30px;
 }

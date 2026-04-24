@@ -1,8 +1,11 @@
 :root {
-    --bg: #050505; /* Deep Black */
-    --accent: #00ff41; /* Matrix/OLED Green */
-    --text: #e2e8f0; /* Off-white for readability */
-    --trace-color: rgba(0, 255, 65, 0.15); 
+    --bg: #050505;
+    --surface: #121212;
+    --accent: #00ff41;
+    --text-primary: #e0f2fe;    /* Very light "Ice Blue" - cuts the halation effect */
+    --text-secondary: #9ca3af;  /* Neutral "Cool Gray" - high contrast but soft */
+    --text-bright: #00ff41;     /* Use this only for tiny keywords/highlights */
+
 }
 
 body {

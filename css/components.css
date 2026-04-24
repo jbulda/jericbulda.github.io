@@ -102,33 +102,107 @@
     font-weight: bold;
 }
 
-/* Impact Cards */
-.impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-}
-
-.impact-card {
-    background: #ffffff;
-    padding: 30px;
+.skill-category, .impact-card {
+    background: var(--surface);
+    padding: 35px;
     border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    transition: 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
-.impact-card:hover {
+.skill-category:hover, .impact-card:hover {
     border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Title Legibility */
+.skill-category h3, .impact-card h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+/* Body Text Legibility */
+.skill-list li, .impact-card p {
+    color: var(--text-secondary); /* Less "vibrant" than white, easier to read */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 1; /* Ensure it's not too faded */
+}
+
+.skill-list li::before {
+    content: "•";
+    color: var(--accent); /* Only the bullet point glows */
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Impact Cards */
+.impact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Creates consistent breathing room between all elements */
 }
 
 .client-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--accent);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--accent); /* Glowing Green */
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    display: block;
-    margin-bottom: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    display: inline-block;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    width: fit-content; /* Prevents the tag from stretching the full width */
+}
+
+.impact-card h3 {
+    margin-top: 0; /* Removes default browser spacing */
+    color: var(--text-primary); /* High-contrast Mint/White */
+    line-height: 1.2;
+}
+
+.impact-card p {
+    margin-top: 10px;
+    color: var(--text-secondary); /* Phosphor Gray */
+}
+
+.impact-card-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allows tags to wrap if the card is narrow */
+    gap: 10px;       /* Spacing between the spans */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.impact-card-footer span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent); /* Matrix Green */
+    background: rgba(0, 255, 65, 0.05); /* Very subtle green glow background */
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap; /* Prevents "Enterprise Deployment" from breaking into two lines */
+}
+
+/* The main description paragraph */
+.impact-card p {
+    color: var(--text-secondary); /* Use the #9ca3af we discussed */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 15px 0;
+    flex-grow: 1; /* Helps push the footer down */
 }
 
 .progress-bar {
@@ -157,15 +231,21 @@
 
 .radar-grid {
     fill: none;
-    stroke: #e2e8f0;
+    stroke: rgba(255, 255, 255, 0.1);
     stroke-width: 1;
 }
 
 .skill-area {
-    fill: rgba(99, 102, 241, 0.2);
+    fill: rgba(0, 255, 65, 0.15);
     stroke: var(--accent);
     stroke-width: 2;
-    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+    /* This adds a "glow" to the area itself */
+    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.3));
+}
+
+.skill-node:hover {
+    r: 8;
+    fill: #fff; /* Turns white on hover for a "lit up" effect */
 }
 
 .skill-node {
@@ -179,12 +259,29 @@
 .skill-node:hover { r: 7; fill: var(--accent); }
 
 .glass-panel {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid #e2e8f0;
-    min-width: 220px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    background: var(--surface); /* Midnight Gray #121212 */
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 255, 65, 0.2); /* Subtle green border */
+    min-width: 260px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+#skill-details h3 {
+    color: var(--accent); /* Matrix Green */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#skill-details p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* Update/Replace the Dock Item section in css/components.css */

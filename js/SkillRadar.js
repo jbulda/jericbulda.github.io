@@ -10,7 +10,7 @@ export class SkillRadar {
 
     render() {
         let svg = `<svg width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="overflow: visible;">`;
-        
+
         // 1. Draw Background Polygons
         for (let i = 1; i <= 5; i++) {
             let r = (this.radius / 5) * i;
@@ -26,12 +26,22 @@ export class SkillRadar {
         svg += `<polygon points="${skillPoints}" class="skill-area" />`;
 
         // 3. Draw Nodes
+        // Inside js/SkillRadar.js -> render()
         this.skills.forEach((s, i) => {
             const r = (s.level / 100) * this.radius;
             const angle = (Math.PI * 2 * i) / this.skills.length;
             const cx = this.center + r * Math.sin(angle);
             const cy = this.center - r * Math.cos(angle);
-            svg += `<circle cx="${cx}" cy="${cy}" r="5" class="skill-node" data-name="${s.name}" data-level="${s.level}%" />`;
+
+            // Explicitly styling the nodes to ensure visibility on black
+            svg += `<circle cx="${cx}" cy="${cy}" r="6" 
+            fill="#00ff41" 
+            stroke="#050505" 
+            stroke-width="2" 
+            class="skill-node" 
+            data-name="${s.name}" 
+            data-level="${s.level}%" 
+            style="filter: drop-shadow(0 0 5px #00ff41); cursor: pointer;" />`;
         });
 
         svg += `</svg>`;
@@ -49,7 +59,22 @@ export class SkillRadar {
     addInteractivity() {
         this.container.querySelectorAll('.skill-node').forEach(node => {
             node.addEventListener('mouseenter', (e) => {
-                this.details.innerHTML = `<h3>${e.target.dataset.name}</h3><p>Proficiency: ${e.target.dataset.level}</p>`;
+                // We inject the H3 and P tags to match our new CSS
+                this.details.innerHTML = `
+                <h3>${e.target.dataset.name}</h3>
+                <p>Expertise Level: <span style="color: #fff; font-weight: bold;">${e.target.dataset.level}</span></p>
+                <div class="progress-bar" style="margin-top: 15px;">
+                    <div class="progress" style="width: ${e.target.dataset.level}"></div>
+                </div>
+            `;
+                // Subtle glow effect on the panel when active
+                this.details.style.borderColor = 'rgba(0, 255, 65, 0.5)';
+                this.details.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.1)';
+            });
+
+            node.addEventListener('mouseleave', () => {
+                this.details.style.borderColor = 'rgba(0, 255, 65, 0.2)';
+                this.details.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.6)';
             });
         });
     }
