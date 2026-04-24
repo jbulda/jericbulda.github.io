@@ -1,0 +1,14 @@
+:root {
+    --bg: #050505; /* Deep Black */
+    --accent: #00ff41; /* Matrix/OLED Green */
+    --text: #e2e8f0; /* Off-white for readability */
+    --trace-color: rgba(0, 255, 65, 0.15); 
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+.accent { color: var(--accent); }

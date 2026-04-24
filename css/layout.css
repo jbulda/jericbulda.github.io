@@ -1,0 +1,132 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    overflow: hidden;
+    background: #000;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Level 0: The very bottom */
+    opacity: 0.8;
+    filter: none; /* Remove the grayscale from the previous version */
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%);
+    z-index: 1; /* Level 1: Fades the canvas, but stays behind text */
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    text-align: left; /* Or 'center' if you prefer a centered hero */
+    pointer-events: none;
+}
+
+/* Force the button to follow the text alignment */
+.hero-actions {
+    margin-top: 2rem;
+    pointer-events: auto;
+}
+
+.hero-content * {
+    pointer-events: auto; /* Re-enables clicks for the button specifically */
+}
+
+.play-btn {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+.play-btn:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 30px var(--accent);
+}
+
+.section {
+    padding: 80px 10%;
+}
+
+/* Update/Replace the Navigation section in css/layout.css */
+.floating-dock {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Higher than hero content and mask */
+    width: auto;
+    display: flex;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.dock-container {
+    display: flex;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    padding: 8px 16px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    gap: 8px;
+}
+
+.dock-item {
+    color: #888;
+}
+
+.dock-item:hover {
+    color: var(--accent) !important;
+    background: rgba(0, 255, 65, 0.1);
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 40px;
+    display: block;
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+}
+
+/* Update in css/layout.css */
+footer {
+    padding: 100px 10% 150px 10%; /* Extra bottom padding for the dock */
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    font-size: 1.1rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
